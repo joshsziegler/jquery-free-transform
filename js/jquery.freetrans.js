@@ -470,8 +470,11 @@
 
         function _toggleControls(sel, show) {
                 var d = sel.data('freetrans');
-                
-                if(show == d._p.controls) return;
+                var curr_vis = d._p.controls;
+                if(typeof show == 'undefined'){
+                    show = !curr_vis; // set to opposite
+                }else if(show == d._p.controls){ return;
+                }
 
                 d._p.divs.controls.css({
                         visibility: (show) ? 'visible' : 'hidden'
