@@ -98,6 +98,17 @@ You can retrieve the current options of the transformed selector by passing
 	var o = $('mydiv').freetrans('getOptions');
 	console.log(o.angle, o.maintainAspectRatio, o['rot-origin'], o.scaleLimit, o.scalex, o.scaley, o.x, o.y);
 
+##### onMove Event
+
+When the user finishes moving an object (mouseup event), a jQuery event is fired if that object has an ID. 
+        
+        function saveOptions(e){
+            console.log(e.id); // ID of the DOM object
+            console.log(e.options); // object returned by getOptions
+        }
+
+        $(document).on('freetrans.move', saveOptions);
+
 ##### Destroying the plugin
 If you want to remove the freetrans functionality from a selector, you can pass `'destroy'`. It will unbind any events, and destroy the `$.data('freetrans')` object. 
 

@@ -101,6 +101,17 @@
         };
         
         // private methods
+        function _onMove(sel){
+                var id = sel.attr('id');
+                if(id){
+                        $(document).trigger(
+                               {type:"freetrans.move",
+                                id: id,
+                                options: sel.freetrans('getOptions'), 
+                                time: new Date()
+                        });
+                }
+        };
         function _init(sel, options){
                 
                 var off = sel.offset();
@@ -186,6 +197,7 @@
                         var up = function(evt) {
                                 $(document).unbind('mousemove.freetrans', drag);
                                 $(document).unbind('mouseup.freetrans', up);
+                                _onMove(sel);
                         };
                         
                         $(document).bind('mousemove.freetrans', drag);
@@ -216,6 +228,7 @@
                         var up = function(evt) {
                                 $(document).unbind('mousemove.freetrans', drag);
                                 $(document).unbind('mouseup.freetrans', up);
+                                _onMove(sel);
                         };
                         
                         $(document).bind('mousemove.freetrans', drag);
@@ -379,6 +392,7 @@
                                 _draw(sel, data);
                                 $(document).unbind('mousemove.freetrans', drag);
                                 $(document).unbind('mouseup.freetrans', up);
+                                _onMove(sel);
                         };
                         
                         $(document).bind('mousemove.freetrans', drag);
